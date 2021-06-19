@@ -16,7 +16,13 @@ func (list *ListPorts) AddElement(port int, isOpened bool) {
 	defer increment(list)
 
 	if list.head == nil {
-		list.head = &Head{port: port, isOpened: isOpened, next: nil, hasBeenSorted: false}
+		list.head = &Head{
+			port: port,
+			isOpened: isOpened,
+			next: nil,
+			hasBeenSorted: false,
+		}
+
 		return
 	}
 
@@ -37,7 +43,7 @@ func (list *ListPorts) PrintResult() {
 	head := list.head
 	i := 0
 
-	for (*head).next != nil {
+	for head != nil {
 		if head.isOpened {
 			fmt.Printf("La porta %d è aperta\n", head.port)
 		}
